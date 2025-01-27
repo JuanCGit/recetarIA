@@ -1,0 +1,18 @@
+@if (ingredients().length) {
+  <div class="ingredient-list">
+    <div class="ingredient-list__border">
+      @for ( ingredient of ingredients(); track ingredient; let i = $index ) {
+        <div class="ingredient-list__ingredient">
+          <input pInputText type="text" [formControl]="ingredients()[i]" />
+          <i class="pi pi-trash" (click)="removeIngredient(i)"></i>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="no-ingredients">
+    <div class="no-ingredients__empty">
+      <h2>Añade algún ingrediente <span class="highlight">;)</span></h2>
+    </div>
+  </div>
+}

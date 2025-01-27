@@ -19,11 +19,16 @@
       background-color: var(--dark-bg-hover);
     }
     input {
+      width: 100%;
       --p-inputtext-focus-ring-color: transparent !important;
     }
-    img {
-      padding: 8px 12px;
+    .pi-trash {
       cursor: pointer;
+      align-self: center;
+      padding: 0 8px;
+      &:hover {
+        color: var(--delete);
+      }
     }
   }
 }
