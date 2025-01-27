@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { IGeneratedRecipe } from '../interfaces/recipes.interfaces';
+import { IGeneratedRecipe } from '../../interfaces/recipes.interfaces';
 
 @Injectable({
   providedIn: 'root',

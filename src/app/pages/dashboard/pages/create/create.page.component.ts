@@ -1,11 +1,11 @@
 import { Component, computed, linkedSignal } from '@angular/core';
 import { Button } from 'primeng/button';
-import { CustomInputComponent } from '../../components/custom-input/custom-input.component';
+import { CustomInputComponent } from '../../../../components/custom-input/custom-input.component';
 import { Editor } from 'primeng/editor';
 import { FileUpload } from 'primeng/fileupload';
 import { FormsModule } from '@angular/forms';
-import { ScreenSizeService } from '../../../services/screen-size.service';
-import { recipeService } from '../../services/recipes.service';
+import { ScreenSizeService } from '../../../../../services/screen-size.service';
+import { recipeService } from '../../../../services/recipes/recipes.service';
 
 @Component({
   selector: 'app-create',

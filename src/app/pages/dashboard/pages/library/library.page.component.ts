@@ -1,6 +1,6 @@
 import {Component, computed, signal, WritableSignal} from '@angular/core';
-import {CustomInputComponent} from "../../components/custom-input/custom-input.component";
-import {ScreenSizeService} from '../../../services/screen-size.service';
+import {CustomInputComponent} from "../../../../components/custom-input/custom-input.component";
+import {ScreenSizeService} from '../../../../../services/screen-size.service';
 import {IRecipeCard} from './interfaces/recipe-card.interface';
 import {Router, RouterLink} from '@angular/router';
 

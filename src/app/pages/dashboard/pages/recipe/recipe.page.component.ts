@@ -1,9 +1,9 @@
 import {Component, computed, signal} from '@angular/core';
-import { ScreenSizeService } from '../../../services/screen-size.service';
+import { ScreenSizeService } from '../../../../../services/screen-size.service';
 import {Editor} from 'primeng/editor';
 import {FormsModule} from '@angular/forms';
 import {Button} from 'primeng/button';
-import {CustomInputComponent} from '../../components/custom-input/custom-input.component';
+import {CustomInputComponent} from '../../../../components/custom-input/custom-input.component';
 
 @Component({
   selector: 'app-recipe',

@@ -1,10 +1,10 @@
 import { Component, signal, computed } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ScreenSizeService } from '../../../services/screen-size.service';
+import { ScreenSizeService } from '../../../../../services/screen-size.service';
 import { Button } from 'primeng/button';
-import { CustomInputComponent } from '../../components/custom-input/custom-input.component';
+import { CustomInputComponent } from '../../../../components/custom-input/custom-input.component';
 import { IngredientList } from './components/ingredient-list/ingredient-list';
-import { recipeService } from '../../services/recipes.service';
+import { recipeService } from '../../../../services/recipes/recipes.service';
 import { Router } from '@angular/router';
 
 @Component({
