@@ -14,23 +14,23 @@ import {Router, RouterLink} from '@angular/router';
 export class LibraryPageComponent {
   isMobile = computed(() => this.screenSize.isMobile());
   recipesMock: IRecipeCard[] = [{
-    recipeId: 987,
+    recipeId: 111,
     name: 'Macarrones Boloñesa',
     photo: 'https://thispersondoesnotexist.com/'
   },{
-    recipeId: 987,
+    recipeId: 222,
     name: 'Arroz al horno',
     photo: 'https://thispersondoesnotexist.com/'
   },{
-    recipeId: 987,
+    recipeId: 333,
     name: 'Arroz a la cubana',
     photo: 'https://thispersondoesnotexist.com/'
   },{
-    recipeId: 987,
+    recipeId: 444,
     name: 'Brioche',
     photo: 'https://thispersondoesnotexist.com/'
   },{
-    recipeId: 987,
+    recipeId: 555,
     name: 'Pastel',
     photo: 'https://thispersondoesnotexist.com/'
   }];

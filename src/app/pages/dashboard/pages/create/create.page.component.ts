@@ -5,7 +5,7 @@ import { Editor } from 'primeng/editor';
 import { FileUpload } from 'primeng/fileupload';
 import { FormsModule } from '@angular/forms';
 import { ScreenSizeService } from '../../../../../services/screen-size.service';
-import { recipeService } from '../../../../services/recipes/recipes.service';
+import { RecipesService } from '../../../../services/recipes/recipes.service';
 
 @Component({
   selector: 'app-create',
@@ -26,6 +26,6 @@ export class CreatePageComponent {
 
   constructor(
     private screenSize: ScreenSizeService,
-    private recipeService: recipeService,
+    private recipeService: RecipesService,
   ) {}
 }

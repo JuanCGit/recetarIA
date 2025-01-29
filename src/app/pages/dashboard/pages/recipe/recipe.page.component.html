@@ -6,7 +6,7 @@
         [customNgModel]="recipeName"
       />
     } @else {
-      <h1 class="recipe-container__title">Macarrones con tomatico</h1>
+      <h1 class="recipe-container__title">{{ recipeName() }}</h1>
     }
     <div class="recipe-container__actions">
       <i class="pi pi-share-alt"></i>

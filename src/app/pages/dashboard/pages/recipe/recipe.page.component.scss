@@ -1,3 +1,7 @@
+* {
+  transition: all 1s ease-out;
+}
+
 .recipe-container {
     display: flex;
     flex-direction: column;
@@ -17,6 +21,7 @@
       align-items: center;
       width: 100%;
       gap: 32px;
+      min-height: 75px;
       padding-bottom: 16px;
     }
 
