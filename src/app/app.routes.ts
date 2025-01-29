@@ -36,6 +36,11 @@ export const routes: Routes = [
             (c) => c.CreatePageComponent,
           ),
       },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'ai-chef',
+      },
     ],
     //canActivate: [authGuard],
   },
