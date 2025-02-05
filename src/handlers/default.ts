@@ -6,6 +6,5 @@ export const defaultErrorHandler: ErrorRequestHandler = (
   res,
   _next
 ) => {
-  console.error(_error, "MUAK");
-  res.status(500).json({ message: ":( Something happened" });
+  res.status(500).json({ message: "Something happened :(" });
 };
