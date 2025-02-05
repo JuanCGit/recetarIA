@@ -1,17 +1,10 @@
 import { Router } from "express";
-import {
-  createRecipe,
-  getRecipes,
-  getRecipe,
-  updateRecipe,
-  deleteRecipe,
-} from "../controllers/recipes";
+import { getUser, loginUser, registerUser } from "../controllers/auth";
 
 const router = Router();
-router.get("/", getRecipes);
-router.post("/", createRecipe);
-router.get("/:recipeId", getRecipe);
-router.put("/:recipeId", updateRecipe);
-router.delete("/:recipeId", deleteRecipe);
 
-export const recipesRouter = router;
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.get("/user", getUser);
+
+export const authRouter = router;
