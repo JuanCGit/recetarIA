@@ -1,11 +1,11 @@
 import { prisma } from "../services/prisma";
 import { authenticateUser } from "../services/auth";
-import { createRecipeValidator } from "../validators/create-recipe.validator";
+import { recipeValidator } from "../validators/recipe.validator";
 import { RequestHandler } from "express";
 
 export const createRecipe: RequestHandler = async (req, res) => {
   const user = await authenticateUser(req);
-  const validatedData = createRecipeValidator.parse(req.body);
+  const validatedData = recipeValidator.parse(req.body);
   const newRecipe = await prisma.recipe.create({
     data: {
       name: validatedData.name,
@@ -31,4 +31,15 @@ export const getRecipe: RequestHandler = async (req, res) => {
     where: { userId: user.id, id: Number(recipeId) },
   });
   res.status(201).json(recipes);
+};
+
+export const updateRecipe: RequestHandler = async (req, res) => {
+  const user = await authenticateUser(req);
+  const recipeId = req.params.recipeId;
+  const data = recipeValidator.parse(req.body);
+  const updatedRecipe = await prisma.recipe.update({
+    data,
+    where: { userId: user.id, id: Number(recipeId) },
+  });
+  res.status(200).json(updatedRecipe);
 };
