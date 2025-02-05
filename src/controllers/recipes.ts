@@ -43,3 +43,12 @@ export const updateRecipe: RequestHandler = async (req, res) => {
   });
   res.status(200).json(updatedRecipe);
 };
+
+export const deleteRecipe: RequestHandler = async (req, res) => {
+  const user = await authenticateUser(req);
+  const recipeId = req.params.recipeId;
+  await prisma.recipe.delete({
+    where: { userId: user.id, id: Number(recipeId) },
+  });
+  res.status(200).json({ message: "The recipe has been deleted successfully" });
+};
