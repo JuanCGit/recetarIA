@@ -23,3 +23,12 @@ export const getRecipes: RequestHandler = async (req, res) => {
   });
   res.status(201).json(recipes);
 };
+
+export const getRecipe: RequestHandler = async (req, res) => {
+  const user = await authenticateUser(req);
+  const recipeId = req.params.recipeId;
+  const recipes = await prisma.recipe.findUnique({
+    where: { userId: user.id, id: Number(recipeId) },
+  });
+  res.status(201).json(recipes);
+};
