@@ -21,16 +21,23 @@ export const getRecipes: RequestHandler = async (req, res) => {
   const recipes = await prisma.recipe.findMany({
     where: { userId: user.id },
   });
-  res.status(201).json(recipes);
+  res.status(200).json(recipes);
 };
 
 export const getRecipe: RequestHandler = async (req, res) => {
   const user = await authenticateUser(req);
   const recipeId = req.params.recipeId;
-  const recipes = await prisma.recipe.findUnique({
-    where: { userId: user.id, id: Number(recipeId) },
-  });
-  res.status(201).json(recipes);
+  const recipe = await prisma.recipe
+    .findUnique({
+      where: { id: Number(recipeId) },
+    })
+    .catch(() => undefined);
+  if (!recipe) {
+    res.status(404).json({ message: "Recipe not found :(" });
+    return;
+  }
+  const isAuthor = recipe.userId === user.id;
+  res.status(200).json({ ...recipe, isAuthor });
 };
 
 export const updateRecipe: RequestHandler = async (req, res) => {
@@ -41,7 +48,7 @@ export const updateRecipe: RequestHandler = async (req, res) => {
     data,
     where: { userId: user.id, id: Number(recipeId) },
   });
-  res.status(200).json(updatedRecipe);
+  res.status(200).json({ ...updatedRecipe, isAuthor: true });
 };
 
 export const deleteRecipe: RequestHandler = async (req, res) => {
