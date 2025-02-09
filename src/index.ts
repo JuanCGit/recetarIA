@@ -6,6 +6,7 @@ import { defaultErrorHandler } from "./handlers/default";
 import { notFoundErrorHandler } from "./handlers/route";
 import { zodErrorHandler } from "./handlers/zod";
 import cors from "cors";
+import { aiRouter } from "./routes/ai";
 
 const app = express();
 app.use(json());
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use("/auth", authRouter);
 app.use("/recipes", recipesRouter);
+app.use("/ai", aiRouter);
 
 app.use(notFoundErrorHandler);
 app.use(zodErrorHandler);
