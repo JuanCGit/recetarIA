@@ -6,17 +6,23 @@ export const generateRecipe: RequestHandler = async (req, res) => {
   const apiKey = process.env.OPENAI_KEY;
   const endpoint = "https://api.openai.com/v1/chat/completions";
   const ingredients = req.body.ingredients;
+  const languages = { en: "English", es: "Spanish" };
+  const locale = req.headers["accept-language"] || "en";
+  const language = languages[locale];
+  console.info("HOLA", language);
+
   const payload = {
     model: "gpt-4o-mini",
     messages: [
       {
         role: "system",
-        content:
-          "You are a culinary expert. Generate recipes based on a provided list of ingredients.",
+        content: `You are a culinary expert. Generate recipes based on a provided list of ingredients. The recipe should be generated in the following language: ${language}.`,
       },
       {
         role: "user",
-        content: `Given the following ingredients ${ingredients.join()}, make the recipe`,
+        content: `Given the following ingredients ${ingredients.join(
+          ", "
+        )}, make the recipe.`,
       },
     ],
     response_format: {
@@ -39,12 +45,12 @@ export const generateRecipe: RequestHandler = async (req, res) => {
                 properties: {
                   name: {
                     type: "string",
-                    description: "Name of the ingredient",
+                    description: "Name of the ingredient.",
                   },
                   amount: {
                     type: "string",
                     description:
-                      "Name of the ingredient. Eg: 2kg, 3 units, 2 teaspoons, etc",
+                      "Amount of the ingredient. Eg: 2kg, 3 units, 2 teaspoons, etc.",
                   },
                 },
                 additionalProperties: false,
