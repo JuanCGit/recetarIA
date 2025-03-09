@@ -9,7 +9,6 @@ export const generateRecipe: RequestHandler = async (req, res) => {
   const languages = { en: "English", es: "Spanish" };
   const locale = req.headers["accept-language"] || "en";
   const language = languages[locale];
-  console.info("HOLA", language);
 
   const payload = {
     model: "gpt-4o-mini",
@@ -72,9 +71,13 @@ export const generateRecipe: RequestHandler = async (req, res) => {
                 additionalProperties: false,
               },
             },
+            summary: {
+              type: "string",
+              description: "Description of the recipe"
+            }
           },
           additionalProperties: false,
-          required: ["title", "ingredients", "steps"],
+          required: ["title", "ingredients", "steps", "summary"],
         },
       },
     },

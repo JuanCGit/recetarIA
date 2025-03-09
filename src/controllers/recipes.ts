@@ -6,11 +6,13 @@ import { RequestHandler } from "express";
 export const createRecipe: RequestHandler = async (req, res) => {
   const user = await authenticateUser(req);
   const validatedData = recipeValidator.parse(req.body);
+  console.error(validatedData, 'HOLA')
   const newRecipe = await prisma.recipe.create({
     data: {
       name: validatedData.name,
       description: validatedData.description,
       userId: user.id,
+      summary: validatedData.summary
     },
   });
   res.status(201).json(newRecipe);
