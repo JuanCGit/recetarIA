@@ -8,13 +8,24 @@ import { loginUserValidator } from "../validators/login-user";
 
 export const registerUser: RequestHandler = async (req, res) => {
   const data = registerUserValidator.parse(req.body);
-  const conflicting = await prisma.user.findUnique({
+
+  const userEmailExists = await prisma.user.findUnique({
     where: { email: data.email },
   });
-  if (conflicting) {
+  if (userEmailExists) {
     res
       .status(400)
       .json({ message: "There is already an user with that email" });
+    return;
+  }
+
+  const usernameExists = await prisma.user.findUnique({
+    where: { username: data.username },
+  });
+  if (usernameExists) {
+    res
+      .status(400)
+      .json({ message: "There is already a user with that username" });
     return;
   }
 
@@ -43,6 +54,43 @@ export const loginUser: RequestHandler = async (req, res) => {
 };
 
 export const getUser: RequestHandler = async (req, res) => {
-  const { email, name, id } = await authenticateUser(req);
-  res.status(200).json({ email, name, id });
+  const { email, username, id } = await authenticateUser(req);
+  res.status(200).json({ email, username, id });
+};
+
+export const updateUsername: RequestHandler = async (req, res) => {
+  try {
+    const { id } = await authenticateUser(req);
+    const { username } = req.body;
+
+    if (!username || typeof username !== "string") {
+      res.status(400).json({ message: "Username is required" });
+      return;
+    }
+
+    const usernameExists = await prisma.user.findUnique({
+      where: { username },
+    });
+    if (usernameExists) {
+      res.status(400).json({ message: "Username already exists" });
+      return;
+    }
+
+    if (username.length < 3) {
+      res
+        .status(400)
+        .json({ message: "Username must have 3 characters at least" });
+      return;
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: { id },
+      data: { username },
+      select: { id: true, email: true, username: true },
+    });
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(401).json({ message: "Authentication failed" });
+  }
 };
