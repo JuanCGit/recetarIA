@@ -7,8 +7,5 @@ export const recipeValidator = object({
   ),
   description: string({
     required_error: "Your recipe must have a description",
-  }).min(10, "The recipe description must have at least 10 characters"),
-  summary: string({
-    required_error: "Your recipe must have a summary",
-  }).min(10, "The recipe summary must have at least 10 characters"),
+  }).min(10, "The recipe description must have at least 10 characters")
 });

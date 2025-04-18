@@ -11,8 +11,7 @@ export const createRecipe: RequestHandler = async (req, res) => {
     data: {
       name: validatedData.name,
       description: validatedData.description,
-      userId: user.id,
-      summary: validatedData.summary
+      userId: user.id
     },
   });
   res.status(201).json(newRecipe);

@@ -6,7 +6,7 @@ export const generateRecipe: RequestHandler = async (req, res) => {
   const apiKey = process.env.OPENAI_KEY;
   const endpoint = "https://api.openai.com/v1/chat/completions";
   const ingredients = req.body.ingredients;
-  const languages = { en: "English", es: "Spanish" };
+  const languages = { en: "English", es: "Spanish", ca: "Catalan" };
   const locale = req.headers["accept-language"] || "en";
   const language = languages[locale];
 
@@ -70,14 +70,10 @@ export const generateRecipe: RequestHandler = async (req, res) => {
                 required: ["description"],
                 additionalProperties: false,
               },
-            },
-            summary: {
-              type: "string",
-              description: "Description of the recipe"
             }
           },
           additionalProperties: false,
-          required: ["title", "ingredients", "steps", "summary"],
+          required: ["title", "ingredients", "steps"],
         },
       },
     },
